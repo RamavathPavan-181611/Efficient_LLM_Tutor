@@ -1,0 +1,8 @@
+{
+  "bc_D": "models/bc_policy.pkl",
+  "fqi_D": "models/fqi_policy.pkl",
+  "cql_D": "models/cql_D_policy",
+  "bc_Dp": "models/bc_Dp_policy.pkl",
+  "fqi_Dp": "models/fqi_Dp_policy.pkl",
+  "cql_Dp": "models/cql_Dp_policy"
+}

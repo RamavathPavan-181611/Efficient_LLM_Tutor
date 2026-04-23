@@ -1,0 +1,70 @@
+[
+  {
+    "dialogue_id": "placeholder_1",
+    "problem": "If x + 5 = 12, what is x?",
+    "conversation": [
+      {
+        "role": "Student",
+        "text": "I'm stuck on this problem."
+      },
+      {
+        "role": "Tutor",
+        "text": "Let's think about it together. What does the equation tell you?"
+      },
+      {
+        "role": "Student",
+        "text": "It says x plus 5 equals 12?"
+      },
+      {
+        "role": "Tutor",
+        "text": "Exactly! If you take away 5 from both sides, what do you get?"
+      },
+      {
+        "role": "Student",
+        "text": "x equals 7?"
+      },
+      {
+        "role": "Tutor",
+        "text": "That's right! Great work."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "placeholder_2",
+    "problem": "What is 30% of 200?",
+    "conversation": [
+      {
+        "role": "Student",
+        "text": "How do I solve this?"
+      },
+      {
+        "role": "Tutor",
+        "text": "What does 'percent' mean to you?"
+      },
+      {
+        "role": "Student",
+        "text": "Out of 100?"
+      },
+      {
+        "role": "Tutor",
+        "text": "Correct. So 30% means 30 out of 100. Can you write that as a fraction?"
+      },
+      {
+        "role": "Student",
+        "text": "30/100, so 0.3?"
+      },
+      {
+        "role": "Tutor",
+        "text": "Perfect! Now multiply 0.3 \u00d7 200."
+      },
+      {
+        "role": "Student",
+        "text": "That's 60!"
+      },
+      {
+        "role": "Tutor",
+        "text": "Excellent job!"
+      }
+    ]
+  }
+]
