@@ -1,0 +1,95 @@
+<style>
+  .bar-wrap{display:flex;align-items:flex-end;gap:10px;height:260px;padding:0 8px;border-bottom:1.5px solid var(--color-border-tertiary)}
+  .bar-col{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1}
+  .bar{width:100%;border-radius:4px 4px 0 0;transition:opacity .2s;cursor:pointer;position:relative}
+  .bar:hover{opacity:.82}
+  .bar-label{font-size:11px;color:var(--color-text-secondary);text-align:center;line-height:1.3}
+  .bar-val{font-size:12px;font-weight:500;color:var(--color-text-primary);text-align:center}
+  .legend{display:flex;gap:16px;margin:10px 0 4px;flex-wrap:wrap}
+  .legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--color-text-secondary)}
+  .legend-dot{width:10px;height:10px;border-radius:2px}
+  .info-box{padding:10px 14px;border-radius:8px;background:var(--color-background-secondary);font-size:12px;color:var(--color-text-secondary);margin-top:10px;line-height:1.6}
+  .highlight{color:var(--color-text-success);font-weight:500}
+</style>
+
+<div style="padding:8px 0">
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#4a90d9"></div>Trained on D (original)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#f5a623"></div>Trained on D+ (augmented)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#5BAD72"></div>Prompt engineering</div>
+  </div>
+
+  <div style="position:relative">
+    <!-- Reference line at 36% (prompt baseline) -->
+    <div style="position:absolute;left:0;right:0;bottom:calc(260px * 36/75);border-top:1px dashed #5BAD72;z-index:1"></div>
+    <div style="position:absolute;right:4px;bottom:calc(260px * 36/75 + 2px);font-size:10px;color:#5BAD72;z-index:2">36% baseline</div>
+
+    <!-- Reference line at 60.33% (CQL D+) -->
+    <div style="position:absolute;left:0;right:0;bottom:calc(260px * 60.33/75);border-top:1px dashed #f5a623;z-index:1"></div>
+    <div style="position:absolute;right:4px;bottom:calc(260px * 60.33/75 + 2px);font-size:10px;color:#f5a623;z-index:2">60.3% best</div>
+
+    <div class="bar-wrap">
+      <!-- BC(D) -->
+      <div class="bar-col" onclick="showInfo('bc_d')">
+        <div class="bar-val">~33%</div>
+        <div class="bar" style="height:calc(260px * 33/75);background:#4a90d9"></div>
+        <div class="bar-label">BC<br>(D)</div>
+      </div>
+      <!-- BC(D+) -->
+      <div class="bar-col" onclick="showInfo('bc_dp')">
+        <div class="bar-val">~40%</div>
+        <div class="bar" style="height:calc(260px * 40/75);background:#f5a623"></div>
+        <div class="bar-label">BC<br>(D+)</div>
+      </div>
+      <!-- FQI(D) -->
+      <div class="bar-col" onclick="showInfo('fqi_d')">
+        <div class="bar-val">~44%</div>
+        <div class="bar" style="height:calc(260px * 44/75);background:#4a90d9"></div>
+        <div class="bar-label">FQI<br>(D)</div>
+      </div>
+      <!-- FQI(D+) -->
+      <div class="bar-col" onclick="showInfo('fqi_dp')">
+        <div class="bar-val">~46%</div>
+        <div class="bar" style="height:calc(260px * 46/75);background:#f5a623"></div>
+        <div class="bar-label">FQI<br>(D+)</div>
+      </div>
+      <!-- CQL(D) -->
+      <div class="bar-col" onclick="showInfo('cql_d')">
+        <div class="bar-val">48.7%</div>
+        <div class="bar" style="height:calc(260px * 48.67/75);background:#4a90d9"></div>
+        <div class="bar-label">CQL<br>(D)</div>
+      </div>
+      <!-- CQL(D+) -->
+      <div class="bar-col" onclick="showInfo('cql_dp')">
+        <div class="bar-val">60.3%</div>
+        <div class="bar" style="height:calc(260px * 60.33/75);background:#f5a623;outline:2px solid #c47d00;outline-offset:2px"></div>
+        <div class="bar-label" style="font-weight:500;color:var(--color-text-primary)">CQL<br>(D+)</div>
+      </div>
+      <!-- Prompt -->
+      <div class="bar-col" onclick="showInfo('prompt')">
+        <div class="bar-val">36%</div>
+        <div class="bar" style="height:calc(260px * 36/75);background:#5BAD72"></div>
+        <div class="bar-label">Prompt<br>eng.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box" id="info-box">
+    Click any bar to see details. <span class="highlight">CQL(D+) achieves 60.33%</span> — a 50% relative improvement over the prompt engineering baseline (36%).
+  </div>
+</div>
+
+<script>
+const infos = {
+  bc_d:   "BC(D): Behavioral cloning on original data. Underperforms prompt engineering because the low-dimensional state representation loses information, causing the policy to mimic a suboptimal baseline.",
+  bc_dp:  "BC(D+): Same BC but trained on augmented data D+. Outperforms prompt engineering because D+ contains more successful conversations, shifting the behavioral distribution the policy imitates.",
+  fqi_d:  "FQI(D): Fitted Q-Iteration on original data. Outperforms BC and prompt engineering because it explicitly optimises for long-term rewards — not just imitating the dataset.",
+  fqi_dp: "FQI(D+): FQI on augmented data. Modest gains over FQI(D). Augmentation helps but FQI benefits less than CQL because it lacks the conservatism penalty.",
+  cql_d:  "CQL(D): Conservative Q-Learning on original data. 48.67% — beats both prompt engineering and FQI. The conservatism penalty (α=4.0) prevents overestimating Q-values for unseen state-action pairs.",
+  cql_dp: "CQL(D+): Paper's best method. 60.33% — a 50% relative improvement over prompt engineering. Augmented data provides more diverse, higher-quality state-action coverage that CQL can exploit safely.",
+  prompt: "Prompt engineering: baseline with no RL. Simply prompts the LLM with instructions like 'do not give the solution'. Achieves 36% — limited by single-turn greedy generation.",
+};
+function showInfo(key) {
+  document.getElementById('info-box').innerHTML = infos[key];
+}
+</script>

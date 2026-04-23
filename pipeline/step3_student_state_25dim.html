@@ -1,0 +1,60 @@
+<style>
+.dim-card{padding:8px 12px;border-radius:8px;margin-bottom:6px;display:flex;align-items:flex-start;gap:10px;cursor:pointer;transition:opacity .15s}
+.dim-card:hover{opacity:.8}
+.dim-num{font-size:11px;font-weight:500;min-width:24px;padding-top:1px;color:var(--color-text-secondary)}
+.dim-text{font-size:12px;color:var(--color-text-primary);line-height:1.4}
+.dim-tag{font-size:10px;padding:1px 6px;border-radius:4px;font-weight:500;white-space:nowrap;margin-top:2px;display:inline-block}
+.col-wrap{display:grid;grid-template-columns:1fr 1fr;gap:0 20px;padding:4px 0}
+.sec-label{font-size:11px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em;margin:10px 0 4px}
+</style>
+<div style="padding:8px 0">
+  <div style="display:flex;gap:16px;margin-bottom:10px;flex-wrap:wrap">
+    <span style="font-size:12px;color:var(--color-text-secondary);display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:2px;background:#B5D4F4;display:inline-block"></span>Student behaviour</span>
+    <span style="font-size:12px;color:var(--color-text-secondary);display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:2px;background:#9FE1CB;display:inline-block"></span>Student emotion</span>
+    <span style="font-size:12px;color:var(--color-text-secondary);display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:2px;background:#CECBF6;display:inline-block"></span>Tutor actions</span>
+    <span style="font-size:12px;color:var(--color-text-secondary);display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:2px;background:#FAC775;display:inline-block"></span>Cumulative / numeric</span>
+    <span style="font-size:12px;color:var(--color-text-secondary);display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:2px;background:#F5C4B3;display:inline-block"></span>External classifier</span>
+  </div>
+
+  <div class="col-wrap">
+    <div>
+      <div class="sec-label">Student behaviour (binary)</div>
+      <div class="dim-card" style="background:#E6F1FB"><div class="dim-num">1</div><div class="dim-text">Producing math-related content?<br><span class="dim-tag" style="background:#B5D4F4;color:#0C447C">behaviour</span></div></div>
+      <div class="dim-card" style="background:#E6F1FB"><div class="dim-num">2</div><div class="dim-text">Solved the problem correctly?<br><span class="dim-tag" style="background:#B5D4F4;color:#0C447C">behaviour</span></div></div>
+      <div class="dim-card" style="background:#E6F1FB"><div class="dim-num">3</div><div class="dim-text">Asking tutor to re-explain?<br><span class="dim-tag" style="background:#B5D4F4;color:#0C447C">behaviour</span></div></div>
+      <div class="dim-card" style="background:#E6F1FB"><div class="dim-num">4</div><div class="dim-text">Repeating what tutor said?<br><span class="dim-tag" style="background:#B5D4F4;color:#0C447C">behaviour</span></div></div>
+      <div class="dim-card" style="background:#E6F1FB"><div class="dim-num">5</div><div class="dim-text">Going off-topic?<br><span class="dim-tag" style="background:#B5D4F4;color:#0C447C">behaviour</span></div></div>
+      <div class="dim-card" style="background:#E6F1FB"><div class="dim-num">6</div><div class="dim-text">Utterance unrelated to math?<br><span class="dim-tag" style="background:#B5D4F4;color:#0C447C">behaviour</span></div></div>
+      <div class="dim-card" style="background:#E6F1FB"><div class="dim-num">7</div><div class="dim-text">Explicitly asking tutor a question?<br><span class="dim-tag" style="background:#B5D4F4;color:#0C447C">behaviour</span></div></div>
+      <div class="dim-card" style="background:#E6F1FB"><div class="dim-num">8</div><div class="dim-text">Describing what they're stuck on?<br><span class="dim-tag" style="background:#B5D4F4;color:#0C447C">behaviour</span></div></div>
+      <div class="dim-card" style="background:#E6F1FB"><div class="dim-num">14</div><div class="dim-text">Talking about the problem at hand?<br><span class="dim-tag" style="background:#B5D4F4;color:#0C447C">behaviour</span></div></div>
+      <div class="dim-card" style="background:#E6F1FB"><div class="dim-num">15</div><div class="dim-text">Talking about math background?<br><span class="dim-tag" style="background:#B5D4F4;color:#0C447C">behaviour</span></div></div>
+      <div class="dim-card" style="background:#E6F1FB"><div class="dim-num">16</div><div class="dim-text">Discussing related math concepts?<br><span class="dim-tag" style="background:#B5D4F4;color:#0C447C">behaviour</span></div></div>
+      <div class="dim-card" style="background:#E6F1FB"><div class="dim-num">17</div><div class="dim-text">Written down an equation?<br><span class="dim-tag" style="background:#B5D4F4;color:#0C447C">behaviour</span></div></div>
+    </div>
+    <div>
+      <div class="sec-label">Student emotion (binary)</div>
+      <div class="dim-card" style="background:#E1F5EE"><div class="dim-num">10</div><div class="dim-text">Expressing frustration?<br><span class="dim-tag" style="background:#9FE1CB;color:#085041">emotion</span></div></div>
+      <div class="dim-card" style="background:#E1F5EE"><div class="dim-num">11</div><div class="dim-text">Expressing uncertainty / low confidence?<br><span class="dim-tag" style="background:#9FE1CB;color:#085041">emotion</span></div></div>
+      <div class="dim-card" style="background:#E1F5EE"><div class="dim-num">12</div><div class="dim-text">Expressing positive sentiment?<br><span class="dim-tag" style="background:#9FE1CB;color:#085041">emotion</span></div></div>
+      <div class="dim-card" style="background:#E1F5EE"><div class="dim-num">13</div><div class="dim-text">Asking for a break?<br><span class="dim-tag" style="background:#9FE1CB;color:#085041">emotion</span></div></div>
+
+      <div class="sec-label">Tutor actions (binary / cumulative)</div>
+      <div class="dim-card" style="background:#EEEDFE"><div class="dim-num">9</div><div class="dim-text">Tutor asked diagnostic question?<br><span class="dim-tag" style="background:#CECBF6;color:#3C3489">tutor</span></div></div>
+      <div class="dim-card" style="background:#EEEDFE"><div class="dim-num">18</div><div class="dim-text">Tutor asking a question this turn?<br><span class="dim-tag" style="background:#CECBF6;color:#3C3489">tutor</span></div></div>
+      <div class="dim-card" style="background:#EEEDFE"><div class="dim-num">20</div><div class="dim-text">Tutor tried to refocus student?<br><span class="dim-tag" style="background:#CECBF6;color:#3C3489">tutor</span></div></div>
+
+      <div class="sec-label">Mistake tracking (majority vote)</div>
+      <div class="dim-card" style="background:#EEEDFE"><div class="dim-num">19</div><div class="dim-text">Student made mistake this turn?<br><span class="dim-tag" style="background:#CECBF6;color:#3C3489">tutor</span> <span style="font-size:10px;color:var(--color-text-secondary)">(3-way majority vote)</span></div></div>
+
+      <div class="sec-label">Numeric / cumulative</div>
+      <div class="dim-card" style="background:#FAEEDA"><div class="dim-num">21</div><div class="dim-text">How many questions tutor asked so far?<br><span class="dim-tag" style="background:#FAC775;color:#633806">count</span></div></div>
+      <div class="dim-card" style="background:#FAEEDA"><div class="dim-num">22</div><div class="dim-text">How many questions student asked so far?<br><span class="dim-tag" style="background:#FAC775;color:#633806">count</span></div></div>
+      <div class="dim-card" style="background:#FAEEDA"><div class="dim-num">23</div><div class="dim-text">Current turn number (1–20)<br><span class="dim-tag" style="background:#FAC775;color:#633806">count</span></div></div>
+
+      <div class="sec-label">External classifier (Wang & Demszky 2024)</div>
+      <div class="dim-card" style="background:#FAECE7"><div class="dim-num">24</div><div class="dim-text">Math density score<br><span class="dim-tag" style="background:#F5C4B3;color:#712B13">classifier</span></div></div>
+      <div class="dim-card" style="background:#FAECE7"><div class="dim-num">25</div><div class="dim-text">Mathematical reasoning score<br><span class="dim-tag" style="background:#F5C4B3;color:#712B13">classifier</span></div></div>
+    </div>
+  </div>
+</div>
